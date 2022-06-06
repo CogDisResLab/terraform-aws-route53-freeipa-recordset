@@ -1,0 +1,46 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v3.2.0
+      hooks:
+        - id: trailing-whitespace
+        - id: end-of-file-fixer
+        - id: check-yaml
+        - id: check-added-large-files
+        - id: detect-private-key
+        - id: detect-aws-credentials
+          args:
+            - "--allow-missing-credentials"
+        - id: pretty-format-json
+          args:
+            - "--autofix"
+            - "--indent=4"
+
+    - repo: https://github.com/antonbabenko/pre-commit-terraform
+      rev: v1.64.0
+      hooks:
+        - id: terraform_fmt
+          args:
+            - --args=-no-color
+            - --args=-write=true
+        - id: checkov
+          args:
+            - "--quiet"
+            - "--compact"
+        - id: terraform_docs
+        - id: terraform_tflint
+          args:
+            - "terraform"
+            - "--args=--module"
+            - "--args=--config=__GIT_WORKING_DIR__/.tflint.hcl"
+        - id: terraform_tfsec
+          args:
+            - "terraform"
+            - "--args=--exclude-downloaded-modules"
+    - repo: https://github.com/compilerla/conventional-pre-commit
+      rev: v1.3.0
+      hooks:
+        - id: conventional-pre-commit
+          stages: [commit-msg]
+          args: [] # optional: list of Conventional Commits types to allow
