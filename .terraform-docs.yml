@@ -22,9 +22,7 @@ content: |-
   {{ include "examples/simple/main.tf" }}
   ```
 
-
   {{ .Requirements }}
-
 
   {{ .Providers }}
 
