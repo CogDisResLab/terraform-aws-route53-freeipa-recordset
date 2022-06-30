@@ -14,7 +14,7 @@ locals {
 }
 
 resource "aws_route53_record" "kerberos_txt_public" {
-  zone_id = var.public_zone.id
+  zone_id = var.public_zone
   name    = "_kerberos.${var.base_domain}."
   type    = "TXT"
   ttl     = "300"
@@ -22,7 +22,7 @@ resource "aws_route53_record" "kerberos_txt_public" {
 }
 
 resource "aws_route53_record" "kerberos_txt_private" {
-  zone_id = var.private_zone.id
+  zone_id = var.private_zone
   name    = "_kerberos.${var.base_domain}."
   type    = "TXT"
   ttl     = "300"
@@ -32,7 +32,7 @@ resource "aws_route53_record" "kerberos_txt_private" {
 resource "aws_route53_record" "kerberos_records_public" {
   for_each = local.kerberos_record_names
 
-  zone_id = var.public_zone.id
+  zone_id = var.public_zone
   name    = each.value
   type    = "SRV"
   ttl     = "300"
@@ -42,7 +42,7 @@ resource "aws_route53_record" "kerberos_records_public" {
 resource "aws_route53_record" "kerberos_records_private" {
   for_each = local.kerberos_record_names
 
-  zone_id = var.private_zone.id
+  zone_id = var.private_zone
   name    = each.value
   type    = "SRV"
   ttl     = "300"
@@ -52,7 +52,7 @@ resource "aws_route53_record" "kerberos_records_private" {
 resource "aws_route53_record" "kpasswd_records_public" {
   for_each = local.kpasswd_record_names
 
-  zone_id = var.public_zone.id
+  zone_id = var.public_zone
   name    = each.value
   type    = "SRV"
   ttl     = "300"
@@ -62,7 +62,7 @@ resource "aws_route53_record" "kpasswd_records_public" {
 resource "aws_route53_record" "kpasswd_records_private" {
   for_each = local.kpasswd_record_names
 
-  zone_id = var.private_zone.id
+  zone_id = var.private_zone
   name    = each.value
   type    = "SRV"
   ttl     = "300"
@@ -71,7 +71,7 @@ resource "aws_route53_record" "kpasswd_records_private" {
 
 resource "aws_route53_record" "ldap_record_public" {
 
-  zone_id = var.public_zone.id
+  zone_id = var.public_zone
   name    = local.ldap_record_names
   type    = "SRV"
   ttl     = "300"
@@ -80,7 +80,7 @@ resource "aws_route53_record" "ldap_record_public" {
 
 resource "aws_route53_record" "ldap_record_private" {
 
-  zone_id = var.private_zone.id
+  zone_id = var.private_zone
   name    = local.ldap_record_names
   type    = "SRV"
   ttl     = "300"
@@ -89,7 +89,7 @@ resource "aws_route53_record" "ldap_record_private" {
 
 resource "aws_route53_record" "ntp_record_public" {
 
-  zone_id = var.public_zone.id
+  zone_id = var.public_zone
   name    = local.ntp_record_names
   type    = "SRV"
   ttl     = "300"
@@ -98,7 +98,7 @@ resource "aws_route53_record" "ntp_record_public" {
 
 resource "aws_route53_record" "ntp_record_private" {
 
-  zone_id = var.private_zone.id
+  zone_id = var.private_zone
   name    = local.ntp_record_names
   type    = "SRV"
   ttl     = "300"

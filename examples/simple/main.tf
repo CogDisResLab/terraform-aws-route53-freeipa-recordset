@@ -17,7 +17,7 @@ module "route53_freeipa_recordset" {
 
   base_domain  = "example.com"
   subdomain    = "idp"
-  private_zone = aws_route53_zone.private
-  public_zone  = aws_route53_zone.public
+  private_zone = aws_route53_zone.private.id
+  public_zone  = aws_route53_zone.public.id
 
 }
