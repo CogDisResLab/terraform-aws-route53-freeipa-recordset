@@ -11,7 +11,9 @@ resource "aws_route53_zone" "private" {
 }
 
 module "route53_freeipa_recordset" {
-  source = "https://github.com/CogDisResLab/terraform-aws-route53-freeipa-recordset"
+  source  = "CogDisResLab/route53-freeipa-recordset/aws"
+  version = "0.9.0"
+
 
   base_domain  = "example.com"
   subdomain    = "idp"
